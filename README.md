@@ -1,8 +1,11 @@
-# React + Vite
+# kinderFront
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este repositorio contiene el frontend del sistema de gestión para instituciones de educación inicial (Kinder)
 
-Currently, two official plugins are available:
+Este repositorio contiene el frontend del sistema de gestión para instituciones de educación inicial (Kinder). Utiliza React para la creación de interfaces de usuario interactivas y Vite como el bundler para una experiencia de desarrollo más rápida y eficiente.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Tecnologías utilizadas:
+Lenguaje de programación: JavaScript
+Librería: React
+Bundler: Vite
+Este repositorio está en continuo desarrollo y trabaja en conjunto con el backend para proporcionar una experiencia completa de gestión escolar.
