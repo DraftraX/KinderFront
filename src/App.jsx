@@ -33,6 +33,8 @@ import ReportesPagos from "./Modules/reportes/pages/ReportesPagos";
 //Admin
 import Sucursal from "./Modules/Aministrador/Sucursal";
 import Establecimiento from "./Modules/Aministrador/Establecimiento";
+//Documentacion
+import Documentacion from "./Modules/Documentacion/Documentacion";
 
 function App() {
   return (
@@ -41,6 +43,7 @@ function App() {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/register" element={<Registrarse />} />
         <Route path="/login" element={<IniciarSesion />} />
+        <Route path="/documentacion" element={<Documentacion />} />
 
         {/* Todas las rutas protegidas */}
         <Route element={<RutasProtegidas />}>

@@ -15,10 +15,10 @@ const { Header, Content, Footer, Sider } = Layout;
 const PageLayout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [user, setUser] = useState({
-    // name: localStorage.getItem("username") || "Guest",
+    name: "Guest",
     avatar:
       "https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png",
-    // tipoUsuario: "administrador",
+    tipoUsuario: "guest",
   });
 
   useEffect(() => {
@@ -38,9 +38,9 @@ const PageLayout = ({ children }) => {
 
           setUser((data) => ({
             ...data,
-            name: userData.username,
-            // avatar: userData.avatar || data.avatar,
-            tipoUsuario: userData.perfil.perfil || data.perfil.perfil,
+            name: userData.username || data.name,
+            avatar: userData.avatar || data.avatar,
+            tipoUsuario: userData.perfil.perfil || data.tipoUsuario,
           }));
           console.log("Datos del usuario:", userData);
           console.log("Perfil del usuario:", userData.perfil.perfil);
@@ -74,12 +74,12 @@ const PageLayout = ({ children }) => {
           "Inscribir Alumno",
           "Inscribir Apoderado",
         ];
-        return excludeLabels.includes(item.label) ? null : item;
+        return !excludeLabels.includes(item.label);
       } else if (user.tipoUsuario === "SECRETARIA") {
         const excludeLabels = ["Administrador", "Seguridad", "Planificacion"];
-        return excludeLabels.includes(item.label) ? null : item;
+        return !excludeLabels.includes(item.label);
       }
-      return item.label == "Pagina Principal";
+      return item.label === "Pagina Principal";
     });
 
     return filteredItems.map((item) => ({
@@ -101,10 +101,10 @@ const PageLayout = ({ children }) => {
       <Menu.Item key="1" icon={<UserOutlined />}>
         {user.name}
       </Menu.Item>
-      <Menu.Item key="1" icon={<UserOutlined />}>
+      <Menu.Item key="2" icon={<UserOutlined />}>
         {user.tipoUsuario}
       </Menu.Item>
-      <Menu.Item key="2" icon={<LogoutOutlined />} onClick={handleLogout}>
+      <Menu.Item key="3" icon={<LogoutOutlined />} onClick={handleLogout}>
         Cerrar sesión
       </Menu.Item>
     </Menu>
@@ -148,7 +148,7 @@ const PageLayout = ({ children }) => {
             />
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
-            <Dropdown overlay={menu} placement="bottomRight">
+            <Dropdown menu={menu} placement="bottomRight">
               <Avatar src={user.avatar} />
             </Dropdown>
           </div>

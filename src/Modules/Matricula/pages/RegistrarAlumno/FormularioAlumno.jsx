@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-import {
-  LoadingOutlined,
-  SmileOutlined,
-  SolutionOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
 import { Button, Steps, Form } from "antd";
 import PageLayout from "../../../../components/ComposicionPagina/Layout";
 import Alumno from "./Alumno";
+import tokenItem from "../../../../utils/TokenItem";
+import dayjs from "dayjs";
 
 const { Step } = Steps;
 
@@ -33,6 +29,26 @@ const FormularioAlumno = () => {
   const prev = () => {
     setCurrent(current - 1);
     setIsDisabled(false);
+  };
+
+  const handleSubmit = () => {
+    const formattedValues = {
+      ...formValues,
+      fecha_nacimiento: formValues.fecha_nacimiento
+        ? dayjs(formValues.fecha_nacimiento).format("YYYY-MM-DD")
+        : null,
+      lugar_nacimiento: formValues.lugar_nacimiento.join(", "),
+    };
+
+    tokenItem
+      .post("/alumno/registro", formattedValues)
+      .then((response) => {
+        console.log("Student registered successfully:", response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error registering the student:", error);
+      });
+    console.log("Datos del estudiante: ", formattedValues);
   };
 
   const steps = [
@@ -68,7 +84,7 @@ const FormularioAlumno = () => {
           </Button>
         )}
         {current === steps.length - 1 && (
-          <Button type="primary" onClick={() => console.log("Done!")}>
+          <Button type="primary" onClick={handleSubmit}>
             Done
           </Button>
         )}

@@ -4,7 +4,7 @@ import { Form, Input, Radio, Select, Cascader, Button } from "antd";
 import { initialFormValues } from "./Data";
 import "./Apoderado.css";
 
-const Alumno = ({ form, onSubmit, values, disabled }) => {
+const Apoderado = ({ form, onSubmit, values, disabled }) => {
   return (
     <Form
       form={form}
@@ -83,16 +83,9 @@ const Alumno = ({ form, onSubmit, values, disabled }) => {
         >
           <Input type="email" />
         </Form.Item>
-        {!disabled && (
-          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
-          </Form.Item>
-        )}
       </div>
     </Form>
   );
 };
 
-export default Alumno;
+export default Apoderado;
